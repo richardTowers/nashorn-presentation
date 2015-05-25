@@ -16,11 +16,13 @@ import java.io.FileReader;
 
 public class HelloWorld extends AbstractHandler
 {
+	private ScriptEngine _engine;
 	private Invocable _invocable;
 
-	public HelloWorld (Invocable invocable)
+	public HelloWorld (ScriptEngine engine)
 	{
-		this._invocable = invocable;
+		this._engine = engine;
+		this._invocable = (Invocable)engine;
 	}
 
     public void handle(String target,
@@ -35,8 +37,10 @@ public class HelloWorld extends AbstractHandler
 		
 		try
 		{
-			// Invoke the JS and print the result:
-			Double result = (Double) this._invocable.invokeFunction("add", 1, 1);
+			Object react = this._engine.get("React");
+			Object element = this._invocable.invokeMethod(react, "createElement", "h1", null, "Hello World!");
+			String result = (String) this._invocable.invokeMethod(react, "renderToString", element);
+			
         	response.getWriter().println(result);
 		}
 		catch (ScriptException ex)
@@ -51,12 +55,13 @@ public class HelloWorld extends AbstractHandler
  
     public static void main(String[] args) throws Exception
     {
+		FileReader fileReader = new FileReader("react.js");
 		ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
 
-		engine.eval("function add (x, y) { return x + y; }");		
+		engine.eval(fileReader);
 
-        Server server = new Server(8080);
-        server.setHandler(new HelloWorld((Invocable)engine));
+        Server server = new Server(1337);
+        server.setHandler(new HelloWorld(engine));
  
         server.start();
         server.join();
