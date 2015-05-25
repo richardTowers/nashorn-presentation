@@ -1,0 +1,3 @@
+[submodule "flux-examples"]
+	path = flux-examples
+	url = https://github.com/yahoo/flux-examples.git
