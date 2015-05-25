@@ -53,7 +53,6 @@ public class HelloWorld extends AbstractHandler
     {
 		ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
 
-		// Compile our JS:
 		engine.eval("function add (x, y) { return x + y; }");		
 
         Server server = new Server(8080);
