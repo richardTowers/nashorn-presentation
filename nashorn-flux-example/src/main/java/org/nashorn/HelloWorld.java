@@ -38,17 +38,16 @@ public class HelloWorld extends AbstractHandler
         response.setContentType("text/html;charset=utf-8");
         response.setStatus(HttpServletResponse.SC_OK);
         
-        if ("/".equals(target)) {
+        if ("/".equals(target) || target.startsWith("/thread/")) {
         	baseRequest.setHandled(true);
-        	response.getWriter().println(this.generateHtml());
+        	response.getWriter().println(this.generateHtml(target));
         }
     }
 
-    private String generateHtml() throws ServletException {
+    private String generateHtml(String target) throws ServletException {
     	try
 		{
-			String result = (String) this._invocable.invokeFunction("render");
-			return result;
+			return (String) this._invocable.invokeFunction("render", target);
 		}
 		catch (ScriptException ex)
 		{

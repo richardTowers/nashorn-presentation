@@ -36,7 +36,9 @@ var ThreadListItem = React.createClass({
                     {(new Date(lastMessage.timestamp)).toTimeString()}
                 </div>
                 <div className="thread-last-message">
+                    <a href={"/thread/" + thread.id}>
                     {lastMessage.text}
+                    </a>
                 </div>
             </li>
         );
