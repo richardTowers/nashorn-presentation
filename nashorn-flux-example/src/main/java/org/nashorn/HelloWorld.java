@@ -8,7 +8,11 @@ import java.io.IOException;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.Request;
+import org.eclipse.jetty.server.Handler;
+import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.server.handler.AbstractHandler;
+import org.eclipse.jetty.server.handler.ResourceHandler;
+import org.eclipse.jetty.server.handler.DefaultHandler;
  
 import javax.script.*;
 
@@ -33,15 +37,18 @@ public class HelloWorld extends AbstractHandler
     {
         response.setContentType("text/html;charset=utf-8");
         response.setStatus(HttpServletResponse.SC_OK);
-        baseRequest.setHandled(true);
-		
-		try
+        
+        if ("/".equals(target)) {
+        	baseRequest.setHandled(true);
+        	response.getWriter().println(this.generateHtml());
+        }
+    }
+
+    private String generateHtml() throws ServletException {
+    	try
 		{
-			Object react = this._engine.get("React");
-			Object element = this._invocable.invokeMethod(react, "createElement", "h1", null, "Hello World!");
-			String result = (String) this._invocable.invokeMethod(react, "renderToString", element);
-			
-        	response.getWriter().println(result);
+			String result = (String) this._invocable.invokeFunction("render");
+			return result;
 		}
 		catch (ScriptException ex)
 		{
@@ -55,13 +62,20 @@ public class HelloWorld extends AbstractHandler
  
     public static void main(String[] args) throws Exception
     {
-		FileReader fileReader = new FileReader("react.js");
+		FileReader fileReader = new FileReader("build/server.js");
 		ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
 
+		engine.eval("var global = this;");
 		engine.eval(fileReader);
 
+        ResourceHandler resource_handler = new ResourceHandler();
+        resource_handler.setResourceBase(".");
+ 
+        HandlerList handlers = new HandlerList();
+        handlers.setHandlers(new Handler[] { new HelloWorld(engine), resource_handler, new DefaultHandler() });
+ 
         Server server = new Server(1337);
-        server.setHandler(new HelloWorld(engine));
+        server.setHandler(handlers);
  
         server.start();
         server.join();
