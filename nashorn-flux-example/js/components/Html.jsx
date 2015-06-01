@@ -30,8 +30,8 @@ var Html = React.createClass({
             <body>
                 <div id="app" dangerouslySetInnerHTML={{__html: this.props.markup}}></div>
             </body>
-            <script dangerouslySetInnerHTML={{__html: this.props.state}}></script>
-            <script src="/build/client.js" defer></script>
+            <script type="application/json" data-data={this.props.state}></script>
+            <script src="/build/client.js" defer async></script>
             </html>
         );
     }

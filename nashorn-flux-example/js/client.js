@@ -1,5 +1,10 @@
 var React = require('react');
-var Html = require('./components/Html.jsx');
-var ChatApp = require('./components/ChatApp.jsx');
+var render = require('./render');
 
-console.log('Ready?');
+// Load the initial state:
+var model =JSON.parse(document.querySelector('[data-data]').dataset.data);
+
+// Re-render the view:
+var html = render(model.messages, location.pathname, false);
+
+React.render(html, document.documentElement);
