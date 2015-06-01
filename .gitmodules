@@ -1,3 +1,6 @@
 [submodule "flux-examples"]
 	path = flux-examples
 	url = https://github.com/yahoo/flux-examples.git
+[submodule "todomvc"]
+	path = todomvc
+	url = https://github.com/elacin/todomvc.git

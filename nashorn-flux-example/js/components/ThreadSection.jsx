@@ -30,10 +30,7 @@ var ThreadSection = React.createClass({
                 </a>
             );
         }, this);
-        var unread =
-            this.props.unreadCount === 0 ?
-                null :
-                <span>Unread threads: {this.props.unreadCount}</span>;
+        var unread = null;
         return (
             <div className="thread-section">
                 <div className="thread-count">
