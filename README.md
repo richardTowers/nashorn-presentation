@@ -8,6 +8,14 @@ I am Richard.
 
 Thanks to The Skiff and Brandwatch.
 
+Questions for the Audience
+----------------------------
+
+* Who writes code for the web?
+* Who has JS as part of their solution?
+* Does anyone run JS on the server?
+* Does anyone use Nashorn?
+
 What is this talk all about?
 ----------------------------
 
@@ -15,7 +23,7 @@ What is this talk all about?
 * Nashorn - what is it and why?
 * Nashorn - how does it work even?
 * Progressive JavaScript - what is it and why?
-* Progressive JavaScript on the JVM with Nashorn
+* Progressive JavaScript on the JVM with Nashorn and React
 * Not crazy enough? Let's Scala.
 
 A brief history of Java and JavaScript
@@ -46,6 +54,7 @@ Nashorn - what is it and why?
 ** $ENV.PWD
 ** $EXEC("cat ../README.md")
 ** $OUT
+** example
 * Embed JS in Java application
 ** HelloWorld
 ** factorial (again)
@@ -54,10 +63,60 @@ Nashorn - how does it work even?
 ----------------------------
 
 * There will be bytecode
+* Mention optimistic typing
+* Mention why JS makes this a nightmare.
 
-Credits
+Progressive JavaScript - what is it and why?
+----------------------------
+
+What?
+
+* Run the same view code on the client and the server.
+  Usually this means JS on the server.
+
+Why?
+
+* Users want apps that respond instantly -> Single page apps
+* Single page apps are crap because:
+** User must have JS
+** User needs strong network connection to download resources
+** Startup time is crap
+
+Time for a patronising demo.
+
+(HTTP2 will help a bit)
+
+Progressive JavaScript on the JVM with Nashorn and React
+----------------------------
+
+* What is React? How does it help us wite progressive JS apps?
+* How does this work in our case?
+** Main Java class
+** Main server JS
+** Data classes
+** Rendering JS, reuse on the client side
+** Demo
+*** Lynx / telnet
+
+Who you trying to get crazy with esse? Don't you know I'm loco?
+----------------------------
+
+* So ScalaJS is a thing, and it works nicely with React too
+** SPA demo
+* Crazy idea:
+	Scala -> JS -> Nashorn -> JVM Bytecode
+         \-> JS -> Browser
+* Less crazy idea: 
+	Scala -> JVM Bytecode
+         \-> JS -> Browser
+
+* Did I get this working? No.
+
+Credits / Links
 ----------------------------
 
 https://en.wikipedia.org/wiki/Rhino_(JavaScript_engine)
+
+https://en.wikipedia.org/wiki/Java_bytecode_instruction_listings
 
 http://winterbe.com/posts/2014/04/05/java8-nashorn-tutorial/
