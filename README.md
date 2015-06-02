@@ -39,7 +39,7 @@ http://james-iry.blogspot.co.uk/2009/05/brief-incomplete-and-mostly-wrong.html :
 
 2006 - jrunscript bundled in JDK 6. JavaScript touted as a cross-platform scripting langauge (alternative to bash / cmd).
 
-2008 - JSR 292 (Da Vinci Machine) adds `invokedynamic` instruction, and some permgen wizadry, used by JRuby to great effect.
+2011 - Java 7 includes JSR 292 (Da Vinci Machine), which adds `invokedynamic` instruction, and some permgen wizadry. Used by JRuby to great effect.
 
 2014 - Java 8 released containing the Nashorn JS compiler.
 
