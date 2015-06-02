@@ -115,8 +115,16 @@ Who you trying to get crazy with esse? Don't you know I'm loco?
 Credits / Links
 ----------------------------
 
+http://winterbe.com/posts/2014/04/05/java8-nashorn-tutorial/
+
 https://en.wikipedia.org/wiki/Rhino_(JavaScript_engine)
+
+http://java.dzone.com/articles/how-java-8-handles-javascript
 
 https://en.wikipedia.org/wiki/Java_bytecode_instruction_listings
 
-http://winterbe.com/posts/2014/04/05/java8-nashorn-tutorial/
+http://www.oracle.com/technetwork/java/jvmls2014-lagergren-2342057.pdf
+
+http://medianetwork.oracle.com/video/player/2630340183001 (video)
+
+http://docs.oracle.com/javase/8/docs/technotes/guides/scripting/nashorn/shell.html
